@@ -2,9 +2,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    //ofSetVerticalSync(true);
-    ofSetVerticalSync(true);
-    
     IS_FLIPPED = true;
     IS_RESETED = true;
     captureWidth = 640;
@@ -96,6 +93,7 @@ void ofApp::draw(){
     videoTexture.draw(0,(ofGetWindowHeight()-(captureHeight * scaleRatio)), ofGetWindowWidth(), captureHeight * scaleRatio);
     ofDisableBlendMode();
 #endif
+
     ofPopMatrix();
     return;
 }
@@ -112,7 +110,6 @@ void ofApp::saveCanvas()
 void ofApp::keyPressed(int key){
     switch (key) {
         case 'f':
-            //ofToggleFullscreen();
             IS_FLIPPED = !IS_FLIPPED;
             break;
         case ' ':
@@ -122,6 +119,8 @@ void ofApp::keyPressed(int key){
         case 's':
             saveCanvas();
             break;
+        case '=':
+            ofToggleFullscreen();
         case OF_KEY_DOWN:
             brightThreshold -=1;
             if (brightThreshold <= 0) brightThreshold = 0;
