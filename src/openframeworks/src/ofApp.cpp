@@ -52,6 +52,14 @@ void ofApp::update(){
         }
         videoTexture.loadData(videoAlpha, captureWidth,captureHeight, GL_RGBA);
     }
+
+#ifdef TARGET_RASPBERRY_PI
+    piFbo->begin();
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    videoTexture.draw(0,(ofGetWindowHeight()-(captureHeight * scaleRatio)), ofGetWindowWidth(), captureHeight * scaleRatio);
+    ofDisableBlendMode();
+    piFbo->end();
+#endif
 }
 
 //--------------------------------------------------------------
@@ -62,18 +70,7 @@ void ofApp::draw(){
           piFbo->begin(); ofClear(0,0,0,0); piFbo->end();
         #endif
     }
-
-#ifdef TARGET_RASPBERRY_PI
-    piFbo->begin();
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
-    videoTexture.draw(0,(ofGetWindowHeight()-(captureHeight * scaleRatio)), ofGetWindowWidth(), captureHeight * scaleRatio);
-    ofDisableBlendMode();
-    piFbo->end();
-#else 
-    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    //ofEnableBlendMode(OF_BLENDMODE_ADD);
-#endif
-    
+   
     ofPushMatrix();
     if (IS_FLIPPED) {
         ofScale( -1, 1, 1 ); // flip side
