@@ -38,7 +38,6 @@ class ofApp : public ofBaseApp{
     float scaleRatio;
 
 #ifdef TARGET_RASPBERRY_PI
-    ofFbo* ping;
-    ofFbo* pong;
+    ofFbo* piFbo;
 #endif
 };

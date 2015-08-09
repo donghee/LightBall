@@ -14,18 +14,17 @@ void ofApp::setup(){
     cam.setDesiredFrameRate(30);
     cam.initGrabber(captureWidth, captureHeight);
     
-    videoAlpha   = new unsigned char[captureWidth*captureHeight*4];
+    videoAlpha = new unsigned char[captureWidth*captureHeight*4];
     videoTexture.allocate(captureWidth,captureHeight, GL_RGBA);
 
     ofBackground(0);
     ofSetBackgroundAuto(false);
+    ofHideCursor();
 
     // ofSetBackgroundAuto not working in Raspberry Pi 2
 #ifdef TARGET_RASPBERRY_PI
-    ping = new ofFbo();
-    pong = new ofFbo();
-    ping->allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 0);
-    pong->allocate(ofGetWidth(), ofGetHeight(), GL_RGBA, 0);
+    piFbo = new ofFbo();
+    piFbo->allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
 #endif
 }
 
@@ -60,22 +59,19 @@ void ofApp::draw(){
     if (IS_RESETED) {
         ofBackground(0); IS_RESETED = false;
         #ifdef TARGET_RASPBERRY_PI
-          ping->begin(); ofClear(0,0,0,0); ping->end();
-          pong->begin(); ofClear(0,0,0,0); pong->end();
+          piFbo->begin(); ofClear(0,0,0,0); piFbo->end();
         #endif
     }
 
 #ifdef TARGET_RASPBERRY_PI
-    ping->begin();
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    pong->draw(0,0);
+    piFbo->begin();
     ofEnableBlendMode(OF_BLENDMODE_ADD);
     videoTexture.draw(0,(ofGetWindowHeight()-(captureHeight * scaleRatio)), ofGetWindowWidth(), captureHeight * scaleRatio);
     ofDisableBlendMode();
-    ping->end();
+    piFbo->end();
 #else 
-    ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-    ofEnableBlendMode(OF_BLENDMODE_ADD);
+    //ofEnableBlendMode(OF_BLENDMODE_ALPHA);
+    //ofEnableBlendMode(OF_BLENDMODE_ADD);
 #endif
     
     ofPushMatrix();
@@ -85,11 +81,9 @@ void ofApp::draw(){
     }
 
 #ifdef TARGET_RASPBERRY_PI
-    ping->draw(0,0);
-    ofFbo* temp = ping;
-    ping = pong;
-    pong = temp;
+    piFbo->draw(0,0);
 #else
+    ofEnableBlendMode(OF_BLENDMODE_ADD);
     videoTexture.draw(0,(ofGetWindowHeight()-(captureHeight * scaleRatio)), ofGetWindowWidth(), captureHeight * scaleRatio);
     ofDisableBlendMode();
 #endif
