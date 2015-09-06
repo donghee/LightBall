@@ -1,0 +1,7 @@
+coreutils 7.6-5.fc12.fa1 coreutils-7.6-5.fc12.fa1.src.rpm
+dash 0.5.5.1-3.fc12 dash-0.5.5.1-3.fc12.src.rpm
+findutils 4.4.2-4.fc12 findutils-4.4.2-4.fc12.src.rpm
+gawk 3.1.7-1.fc12 gawk-3.1.7-1.fc12.src.rpm
+glibc 2.11-2.fa3 glibc-2.11-2.fa3.src.rpm
+libgcc 4.4.2-5.fc12.fa3 gcc-4.4.2-5.fc12.fa3.src.rpm
+util-linux-ng 2.16-10.2.fc12 util-linux-ng-2.16-10.2.fc12.src.rpm

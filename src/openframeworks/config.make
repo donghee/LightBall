@@ -77,9 +77,9 @@
 # add a runtime path to search for those shared libraries, since they aren't 
 # incorporated directly into the final executable application binary.
 # TODO: should this be a default setting?
-# PROJECT_LDFLAGS=-Wl,-rpath=./libs
+#PROJECT_LDFLAGS=-Wl,-rpath=./libs
 
-################################################################################
+#################################################################################
 # PROJECT DEFINES
 #   Create a space-delimited list of DEFINES. The list will be converted into 
 #   CFLAGS with the "-D" flag later in the makefile.

@@ -1,0 +1,13 @@
+coreutils 7.6-5.fc12.fa1 /bin/cat
+coreutils 7.6-5.fc12.fa1 /bin/chmod
+coreutils 7.6-5.fc12.fa1 /bin/mkdir
+coreutils 7.6-5.fc12.fa1 /bin/rm
+coreutils 7.6-5.fc12.fa1 /bin/sort
+dash 0.5.5.1-3.fc12 /bin/dash
+findutils 4.4.2-4.fc12 /bin/find
+gawk 3.1.7-1.fc12 /bin/gawk
+glibc 2.11-2.fa3 /lib/ld-2.11.so
+glibc 2.11-2.fa3 /lib/libc-2.11.so
+glibc 2.11-2.fa3 /lib/libm-2.11.so
+libgcc 4.4.2-5.fc12.fa3 /lib/libgcc_s-4.4.2-20091019.so.1
+util-linux-ng 2.16-10.2.fc12 /usr/bin/getopt
